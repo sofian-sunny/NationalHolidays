@@ -4,18 +4,17 @@ import {
   FETCHING_HOLIDAYS_FAILURE,
 } from '../constants';
 const initialState = {
-  data: [],
-  dataFetched: false,
+  data: undefined,
   isFetching: false,
   error: false,
 };
 
-export default function holidayDataReducer(state = initialState, action) {
+export default function holidaysReducer(state = initialState, action) {
   switch (action.type) {
     case FETCHING_HOLIDAYS_DATA:
       return {
         ...state,
-        data: [],
+        data: undefined,
         isFetching: true,
       };
     case FETCHING_HOLIDAYS_SUCCESS:

@@ -11,8 +11,8 @@ function* fetchHolidaysData(action) {
       fetch,
       'https://www.googleapis.com/calendar/v3/calendars/en.ae%23holiday%40group.v.calendar.google.com/events?key=AIzaSyDis9MbvcljBUzFS3cLb3dt2sdUQ0EWkNc',
     );
-    const responseBody = response.json();
-    yield put({type: FETCHING_HOLIDAYS_SUCCESS, responseBody});
+    const data = yield call([response, 'json']); // or yield call([res, res.json])
+    yield put({type: FETCHING_HOLIDAYS_SUCCESS, data});
   } catch (e) {
     yield put({type: FETCHING_HOLIDAYS_FAILURE});
   }

@@ -1,33 +1,11 @@
-import React from 'react';
-import {TouchableHighlight, View, Text, StyleSheet} from 'react-native';
+import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 
-import {connect} from 'react-redux';
-import {getHolidaysData} from './redux/actions/holidaysAction';
+import HolidayListContainer from '../src/screens/HolidayListScreen/HolidayListContainer';
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.getHolidaysData();
-  }
+const App = createSwitchNavigator({
+  Loading: {
+    screen: HolidayListContainer,
+  },
+});
 
-  render() {
-    return (
-      <View>
-        <Text>Redux Examples</Text>
-      </View>
-    );
-  }
-}
-
-function mapStateToProps(state) {
-  return {
-    holidayData: state.holidayData,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    getHolidaysData: () => dispatch(getHolidaysData()),
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default createAppContainer(App);
